@@ -57,5 +57,17 @@ class ScannerViewController: UIViewController {
 
 extension ScannerViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        // dismiss the picker controller
+        dismiss(animated: true)
+        
+        //guard unwrap imagepicker
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            fatalError("could not load image")
+        }
+        // set the picked image to UIImageView
+        imageView.image = image
+    }
+    
 }
 
